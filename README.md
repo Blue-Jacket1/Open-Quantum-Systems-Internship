@@ -100,12 +100,12 @@ Averaging over independent stochastic trajectories approaches the unconditional 
 
 ![Average of 200 trajectories at c = 0](images/ensemble_trajectories_c0.png)
 
+
 ### 2. Homodyne and heterodyne detection
 
 I also investigated diffusive unravellings. In contrast to direct photon counting, **homodyne detection** continuously measures a field quadrature, producing noisy but continuous conditioned evolution. **Heterodyne detection** monitors two quadratures, introducing two independent noise components.
 
-
-For ideal heterodyne detection, the conditioned state can be described by a diffusive stochastic Schrödinger equation (also known as quantum state diffusion). In Itô form,
+For ideal homodyne detection, the conditioned state evolves according to the stochastic Schrödinger equation
 
 ```math
 \begin{aligned}
@@ -114,29 +114,21 @@ d|\psi\rangle ={}&
 -iH-\frac{1}{2}\sum_k
 \left(
 J_k^\dagger J_k
--2\langle J_k^\dagger\rangle J_k
-+|\langle J_k\rangle|^2
+-2\langle X_k\rangle J_k
++\langle X_k\rangle^2
 \right)
 \right]|\psi\rangle\,dt\\
 &+\sum_k
-\left(J_k-\langle J_k\rangle\right)
-|\psi\rangle\,dZ_k.
+\left(J_k-\langle X_k\rangle\right)
+|\psi\rangle\,dW_k,
 \end{aligned}
 ```
 
-Here, \(dZ_k\) are independent complex Wiener increments satisfying
+where $X_k=(J_k+J_k^\dagger)/2$ is the measured field quadrature and $dW_k$ are independent real Wiener increments representing measurement noise. This assumes ideal detection with zero local-oscillator phase.
 
-```math
-\mathbb{E}[dZ_k]=0,\qquad
-\mathbb{E}[dZ_k\,dZ_l]=0,\qquad
-\mathbb{E}[dZ_k\,dZ_l^*]=\delta_{kl}\,dt.
-```
+Importantly, the quantum-jump unravelling approaches homodyne detection in the large-$c$ limit. As $c$ increases, the jump rate scales as $c^2$, while the change in the state associated with each jump scales as $1/c$. Consequently, jumps become increasingly frequent but progressively smaller. In the limit $c\to\infty$, the transformed jump channel converges to continuous diffusive evolution, with any untransformed channels retaining their jump dynamics.
 
-Each complex increment represents two independent real noise components, corresponding to measurements of the two field quadratures. Unlike quantum-jump trajectories, the resulting conditioned evolution is continuous but stochastic.
-
-
-Importantly, the quantum-jump unravelling approaches homodyne detection in the large-\(c\) limit. As \(c\) increases, jumps become increasingly frequent but produce progressively smaller changes in the conditioned state. In the limit \(c\to\infty\), the compensated jump process converges to a diffusive unravelling corresponding to homodyne detection.
-I compared these diffusive trajectories with jump-based trajectories at larger values of $c$.
+I compared homodyne trajectories with jump-based trajectories at larger values of $c$, demonstrating how the discrete jump process approaches diffusive behaviour.
 
 ![Homodyne and related measurement trajectories](images/homodyne_detection.png)
 
